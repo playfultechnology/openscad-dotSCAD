@@ -9,10 +9,15 @@ function limit(vt, magnitude) =
     
 function setMagnitude(vt, magnitude) = unit_vector(vt) * magnitude;
 
+randSeed = 12345;
+if (randSeed == undef){
+  randSeed = rands(0,1000000,1)[0];
+}
+
 // node
 function node(position, option) = [
     position,                   // position
-    rands(0, 1, len(position)), // velocity
+    rands(0, 1, len(position), randSeed), // velocity
     option                      // option
 ];
 
