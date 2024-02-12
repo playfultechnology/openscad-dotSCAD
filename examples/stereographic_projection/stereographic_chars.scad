@@ -1,13 +1,14 @@
 use <stereographic_extrude.scad>
 
-txt = "";
-square_size = 100;
-font_name = "Webdings";
-font_size = 140;
+txt = "1234";
+square_size = 40;
+font_name = "Arial";
+font_size = 64;
 fn = 24;
 shadow = "YES"; // [YES, NO]
 base_height = 2;
 
+// Create a 2D image of four characters placed in corners of a square
 module four_chars(txt, square_size, font_name, font_size) {
     frame_width = 0.225 * square_size;
 
@@ -33,10 +34,11 @@ module four_chars(txt, square_size, font_name, font_size) {
     }
 }
 
+// Calculate 3D image required to create desired projection 
 stereographic_extrude(square_size * 2.975, convexity = 10) 
     four_chars(txt, square_size, font_name, font_size);
 
-if(shadow == "YES") {
+if($preview && shadow == "YES") {
     color("red") 
     linear_extrude(base_height) 
         four_chars(txt, square_size, font_name, font_size);
